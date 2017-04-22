@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        User::create([ 
             'name' => 'Administrator',
             'username' => 'admin',
             'role' => 'admin',

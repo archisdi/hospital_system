@@ -2,9 +2,13 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Tambah Data Pasien
-        </h1>
+        @if(!Auth::guest())
+            <h1>
+                Tambah Data Pasien
+            </h1>
+        @else
+            <h1>Register</h1>
+        @endif
     </section>
 
     <section class="content">

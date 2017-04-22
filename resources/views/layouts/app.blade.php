@@ -3,22 +3,28 @@
 
 @include('layouts.header_script')
 
-<body class="hold-transition skin-red sidebar-mini">
-<div class="wrapper">
+    @if (!Auth::guest())
+    <body class="hold-transition skin-red sidebar-mini">
+    @else
+        <body class="hold-transition skin-red layout-top-nav">
 
-    @include('layouts.header')
+        @endif
 
-    @include('layouts.sidebar')
+    <div class="wrapper">
 
-    <div class="content-wrapper">
-        @yield('content')
+        @include('layouts.header')
+
+        @include('layouts.sidebar')
+
+        <div class="content-wrapper">
+            @yield('content')
+        </div>
+
+        @include('layouts.footer')
+
     </div>
 
-    @include('layouts.footer')
+    @include('layouts.footer_script')
 
-</div>
-
-@include('layouts.footer_script')
-
-</body>
+    </body>
 </html>

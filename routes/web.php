@@ -12,11 +12,10 @@
 */
 
 Route::get('/', function () {
-    return redirect('/login');
+    return redirect('/register');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('patient','PatientController');
