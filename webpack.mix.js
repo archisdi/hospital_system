@@ -36,6 +36,7 @@ mix.styles([
     'public/css/libs/admin-lte.css',
     'public/css/libs/admin-lte-skin.css',
     'public/css/libs/font-awesome.css'
+
 ], './public/css/min.css', './public/css');
 
 
@@ -43,4 +44,5 @@ mix.styles([
 mix.js([
     'public/js/libs/bootstrap.js',
     'public/js/libs/admin-lte.js'
+
 ], './public/js/min.js', './public/js');

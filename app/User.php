@@ -34,4 +34,8 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    public function patients(){
+        return $this->BelongsToMany('App\Patient','doctor_patients');
+    }
 }

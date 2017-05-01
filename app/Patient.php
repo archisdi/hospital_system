@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
@@ -28,5 +29,14 @@ class Patient extends Model
         }
     }
 
+    public function age(){
+        $dob = Carbon::createFromFormat('Y-m-d',$this->birth_date);
+
+        return Carbon::today()->diffInYears($dob);
+    }
+
+    public function checkups(){
+        return $this->HasMany('App\Checkup');
+    }
 
 }

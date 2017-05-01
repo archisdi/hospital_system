@@ -17,6 +17,10 @@
                     <li class="{{ Request::is('patient') || Request::is('patient/*') ? 'active' : '' }}"><a
                                 href="{{route('patient.index')}}"><i class="fa fa-user"></i> <span>Patient</span></a>
                     </li>
+                @else
+                    <li class="{{ Request::is('doctor/patient') || Request::is('doctor/patient/*') ? 'active' : '' }}"><a
+                                href="{{route('doctor.patient.index')}}"><i class="fa fa-user"></i> <span>Patient</span></a>
+                    </li>
                 @endif
             </ul>
         </section>
