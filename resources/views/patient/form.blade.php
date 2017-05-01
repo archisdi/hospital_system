@@ -34,6 +34,15 @@
     </div>
 </div>
 
+<div class="form-group @if($errors->has('parent_name')) has-error @endif">
+    {!! Form::label('parent_name', 'Nama Orangtua', array('class' => 'col-sm-2 control-label')) !!}
+    <div class="col-sm-10">
+        {!! Form::text('parent_name',NULL, array('class' => 'form-control', 'id' => 'parent_name','required')) !!}
+        @if($errors->has('parent_name')) <span class="help-block">{{ $errors->first('parent_name') }}</span> @endif
+
+    </div>
+</div>
+
 <div class="form-group @if($errors->has('occupation')) has-error @endif">
     {!! Form::label('occupation', 'Pekerjaan', array('class' => 'col-sm-2 control-label')) !!}
     <div class="col-sm-10">

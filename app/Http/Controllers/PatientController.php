@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -37,6 +38,10 @@ class PatientController extends Controller
 
         $patient = New Patient($data);
         $patient->save();
+
+        if(Auth::guest()){
+            return view('patient.success');
+        }
 
         return redirect(route('patient.index'));
     }
