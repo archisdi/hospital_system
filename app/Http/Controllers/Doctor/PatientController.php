@@ -29,21 +29,11 @@ class PatientController extends Controller
 
     }
 
-    public function pair(Request $request){
-        if(!$patient = Patient::where('id_card_number',$request->input('id_card_number'))->first()){
-            return response([
-                [
-                    'message' => 'data pasien tidak ditemukan'
-                ]
-            ],404);
-        }
+    public function pair($id){
+        $patient = Patient::findOrFail($id);
 
         if(DoctorPatient::where('patient_id',$patient->id)->where('user_id',Auth::user()->id)->first()){
-            return response([
-                [
-                    'message' => 'data pasien sudah ada'
-                ]
-            ],404);
+            return back();
         }
 
         Auth::user()->patients()->save($patient);
@@ -51,11 +41,15 @@ class PatientController extends Controller
         $patient['status'] = $patient->status();
         $patient['gender'] = $patient->gender();
 
-        return response([
-            [
-                'message' => 'data pasien berhasil dipair',
-                'content' => $patient
-            ]
-        ],200);
+        return back();
+    }
+
+    public function patient_list(Request $request ){
+        if($search = $request->input('search')){
+            $patients = Patient::where('name', 'LIKE', '%' . $search . '%')->simplePaginate(10);
+        }else{
+            $patients = Patient::simplePaginate(10);
+        }
+        return view('doctor.patient.list',compact('patients'));
     }
 }

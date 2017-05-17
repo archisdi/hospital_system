@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Data Pasien
+            Data Seluruh Pasien
         </h1>
     </section>
 
@@ -12,7 +12,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="box">
                     <div class="box-header">
-                        <form action="{{route('doctor.patient.index')}}" method="get" class="input-group input-group-sm"
+                        <form action="{{route('doctor.patient.list')}}" method="get" class="input-group input-group-sm"
                               style="width: 350px;">
                             <input type="text" name="search" value="{{(isset($_GET['search'])? $_GET['search'] : '')}}"
                                    class="form-control" placeholder="Search">
@@ -41,24 +41,28 @@
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->gender()}}</td>
                                     <td><span class="label label-primary">{{$item->blood_type}}</span></td>
-                                    <td>{{$item->status()}}</td>
-                                    <td><a href="{{route('doctor.patient.show',$item->id)}}"
-                                           class="btn btn-sm btn-warning"><i class="fa fa-arrow-right"></i></a></td>
+                                    <td>{!! $item->PairStatusRender(\Illuminate\Support\Facades\Auth::user()->id) !!}</td>
+                                    <td>
+                                        @if(!$item->PairStatus(\Illuminate\Support\Facades\Auth::user()->id) )
+                                            <a href="{{route('doctor.patient.pair',$item->id)}}"
+                                               class="btn btn-sm btn-default"><i class="fa fa-plus"></i></a>
+                                        @else
+                                            <button class="btn btn-default btn-sm" disabled><i class="fa fa-plus"></i></button>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="box-footer">
-                        <br>
-                        <a href="{{route('doctor.patient.list')}}" class="btn btn-default"><i class="fa fa-plus"></i></a>
                         <div class="pull-right">
                             {{isset($_GET['search']) ? $patients->appends(['search' => $_GET['search']])->links() : $patients->links()}}
 
                         </div>
                     </div>
-                    <!-- /.box-body -->
                 </div>
+                <a href="{{route('doctor.patient.index')}}" class="btn btn-default">Kembali</a>
             </div>
         </div>
     </section>

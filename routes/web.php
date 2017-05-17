@@ -26,8 +26,9 @@ Route::resource('patient', 'PatientController');
 
 Route::group(['prefix' => 'doctor', 'namespace' => 'Doctor'], function () {
     Route::get('/patient', 'PatientController@index')->name('doctor.patient.index');
+    Route::get('/patient/list', 'PatientController@patient_list')->name('doctor.patient.list');
     Route::get('/patient/{id}', 'PatientController@show')->name('doctor.patient.show');
-    Route::post('/patient/pair', 'PatientController@pair')->name('doctor.patient.pair');
+    Route::get('/patient/{id}/pair', 'PatientController@pair')->name('doctor.patient.pair');
 
     Route::group(['prefix' => 'patient/{id}'], function () {
         Route::get('/checkup/create', 'CheckupController@create')->name('doctor.checkup.create');

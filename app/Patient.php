@@ -13,6 +13,25 @@ class Patient extends Model
         'blood_type', 'id_card_number', 'parent_name', 'n_families'
     ];
 
+    public function DoctorPatient(){
+        return $this->HasMany('App\Relation\DoctorPatient');
+    }
+
+    public function pairStatus($id){
+        if($this->DoctorPatient()->where('user_id',$id)->first()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function pairStatusRender($id){
+        ($this->pairStatus($id) ? $item = '<span class="label label-success">Paired</span>' : $item = '<span class="label label-danger">Not-paired</span>');
+
+        return $item;
+    }
+
+
     public function gender(){
         if($this->gender == 'male'){
             return 'Laki-laki';
