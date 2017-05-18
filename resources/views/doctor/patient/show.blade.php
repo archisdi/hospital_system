@@ -10,7 +10,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="box">
+                <div class="box box-primary">
                     <div class="box-body">
                         <label class="col-sm-2 control-label">Nama</label>
                         <div class="col-sm-10">
@@ -39,41 +39,40 @@
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="box">
-                    <div class="box-body">
-                        <h5>Checkups</h5>
-                        <table class="table table-bordered">
-                            <tbody>
-                            <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Dokter</th>
-                                <th>Tanggal</th>
-                                <th>Aksi</th>
-                            </tr>
-                            <?php $i = 1 ?>
-                            @foreach($checkups as $item)
-                                <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$item->doctor->name}}</td>
-                                    <td>{{$item->created_at}} </td>
-                                    <td>
-                                        <a href="{{route('doctor.checkup.edit',[$patients->id,$item->id])}}"
-                                           class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
-                                        <a href="{{route('doctor.checkup.show',[$patients->id,$item->id])}}"
-                                           class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
-                                    </td>
-                                </tr>
-                                <?php $i++ ?>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="box-footer">
-                        <a href="{{route('doctor.checkup.create',$patients->id)}}" class="btn btn-success">Tambah
-                            Checkup</a>
-                    </div>
-                </div>
+                <?php $i = 1 ?>
+                @foreach($checkups as $item)
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <label class="col-sm-2 control-label">Doctor</label>
+                                <div class="col-sm-10">
+                                    <div class="well well-sm">{{$item->doctor->name}}</div>
+                                </div>
+
+                                <label class="col-sm-2 control-label">Tanggal</label>
+                                <div class="col-sm-10">
+                                    <div class="well well-sm">{{$item->created_at}}</div>
+                                </div>
+
+                                <label class="col-sm-2 control-label">Diagnosis</label>
+                                <div class="col-sm-10">
+                                    <div class="well">{!! $item->diagnosis !!}</div>
+                                </div>
+
+                                <label class="col-sm-2 control-label">Prescription</label>
+                                <div class="col-sm-10">
+                                    <div class="well">{!! $item->prescription !!}</div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <a href="{{route('doctor.checkup.edit',[$patients->id,$item->id])}}" class="btn btn-warning btn-sm">Edit</a>
+                            </div>
+                        </div>
+                    <?php $i++ ?>
+                @endforeach
             </div>
         </div>
     </section>
 @endsection
+
+
+
