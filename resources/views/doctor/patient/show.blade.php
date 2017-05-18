@@ -50,22 +50,27 @@
                                 <th>Tanggal</th>
                                 <th>Aksi</th>
                             </tr>
+                            <?php $i = 1 ?>
                             @foreach($checkups as $item)
                                 <tr>
-                                    <td>{{$item->id}}</td>
+                                    <td>{{$i}}</td>
                                     <td>{{$item->doctor->name}}</td>
                                     <td>{{$item->created_at}} </td>
                                     <td>
-                                        <a href="{{route('doctor.checkup.edit',[$patients->id,$item->id])}}" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
-                                        <a href="{{route('doctor.checkup.show',[$patients->id,$item->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
+                                        <a href="{{route('doctor.checkup.edit',[$patients->id,$item->id])}}"
+                                           class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></a>
+                                        <a href="{{route('doctor.checkup.show',[$patients->id,$item->id])}}"
+                                           class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
+                                <?php $i++ ?>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="box-footer">
-                        <a href="{{route('doctor.checkup.create',$patients->id)}}" class="btn btn-success">Tambah Checkup</a>
+                        <a href="{{route('doctor.checkup.create',$patients->id)}}" class="btn btn-success">Tambah
+                            Checkup</a>
                     </div>
                 </div>
             </div>
