@@ -42,6 +42,9 @@
                 <?php $i = 1 ?>
                 @foreach($checkups as $item)
                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                #{{$i}}
+                            </div>
                             <div class="panel-body">
                                 <label class="col-sm-2 control-label">Doctor</label>
                                 <div class="col-sm-10">
